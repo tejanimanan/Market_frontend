@@ -3,7 +3,7 @@ import { Layout, Menu } from "antd";
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  StockOutlined,
+  
 } from "@ant-design/icons";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
@@ -15,8 +15,8 @@ import {
   SubscriptIcon,
   User2Icon,
 } from "lucide-react";
-import { useDispatch } from "react-redux";
-import { logout } from "../redux/slices/userSlice";
+// import { useDispatch } from "react-redux";
+// import { logout } from "../redux/slices/userSlice";
 import { LOCAL_STORAGE } from "../Constants/STORAGE";
 import { removeLocalStorage } from "../utils/helpers/localStorageHelper";
 import { toast } from "react-toastify";
@@ -27,7 +27,7 @@ const AdminSideBar: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const toggleCollapsed = () => {
     setCollapsed(!collapsed);

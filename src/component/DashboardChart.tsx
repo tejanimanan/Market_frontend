@@ -13,10 +13,13 @@ import { getDashboardChart } from "../services/dashboardService";
 import { getAllScripts } from "../services/scriptService";
 import { message, Select } from "antd";
 
-
+type DataPoint = {
+  date: string;
+  close: number;
+};
 
 const DashboardChart: React.FC = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<DataPoint[]>([]);
   const [selectedStock, setSelectedStock] = useState("NTPC.NS");
   const [scripts, setScripts] = useState<{ value: string; label: string }[]>(
     []
@@ -133,7 +136,7 @@ const handleScriptFilterChange = (value: string | null) => {
           <Tooltip
             formatter={(value, name) => {
               if (name === "close") {
-                return [value.toFixed(2), "Closing Price"];
+                return [(value as number).toFixed(2), "Closing Price"];
               }
               return [value, name];
             }}

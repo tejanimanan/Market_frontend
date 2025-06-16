@@ -12,7 +12,7 @@ import {
   createScript as createScriptService,
   updateScript as updateScriptService,
   deleteScript as deleteScriptService,
-  fetchStockDetails,
+  
 } from "../services/scriptService";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../redux/store";
@@ -40,7 +40,7 @@ interface ScriptData {
 
 const ScriptPage: React.FC = () => {
   const dispatch = useDispatch();
-  const { scripts, loading, error, selectedScript } = useSelector(
+  const { scripts, loading,selectedScript } = useSelector(
     (state: RootState) => state.script
   );
   const [modalOpen, setModalOpen] = React.useState(false);

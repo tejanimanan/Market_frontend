@@ -19,7 +19,6 @@ import {
   setUsers,
   addUser,
   updateUser as updateUserAction,
-  removeUser,
   setLoading,
   setError,
 } from "../redux/slices/userSlice";
@@ -28,7 +27,7 @@ import { toast, ToastContainer } from "react-toastify";
 
 const UserPage: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { users, loading, error } = useAppSelector((state) => state.user);
+  const { users, loading } = useAppSelector((state) => state.user);
 
   const [modalOpen, setModalOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
@@ -211,7 +210,7 @@ const UserPage: React.FC = () => {
       if (response?.data?.id) {
         const updatedUser: UserData = {
           key: userId,
-          uid:editData?.uid,
+          uid:editData?.uid  ?? 0,
           name: editData?.name || "",
           email: editData?.email || "",
           contact: editData?.contact || "",

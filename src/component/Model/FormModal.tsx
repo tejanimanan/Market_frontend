@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Modal, Form, Input, Select, Button, Row, Col, Table } from "antd";
-import { ShareHistoryTable } from "../../utils/helpers/TableColumns";
+// import { ShareHistoryTable } from "../../utils/helpers/TableColumns";
 import { findSharesByUserScript } from "../../services/shareService";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -42,7 +42,7 @@ const FormModal: React.FC<FormModalProps> = ({
   onCancel,
   onSubmit,
   isEdit = false,
-  loading = false,
+  // loading = false,
   scriptPrices,
 }) => {
   const [form] = Form.useForm();
@@ -167,7 +167,7 @@ const FormModal: React.FC<FormModalProps> = ({
 
     // Get the current holding quantity and cost *before* this new transaction
     // This information should ideally come from the state updated by fetchShareHistory
-    const availableShares = form.getFieldValue("availableShares") || 0;
+    // const availableShares = form.getFieldValue("availableShares") || 0;
     // To get the total cost of the current holding, we might need to store it in state
     // or recalculate it from the shareData, considering only transactions contributing to availableShares
     // Recalculating from shareData chronologically up to the current state is safer.
@@ -286,9 +286,7 @@ const FormModal: React.FC<FormModalProps> = ({
             placeholder={placeholder || `Select ${field.label}`}
             optionFilterProp="children"
             filterOption={(input, option) =>
-              (option?.children ?? "")
-                .toLowerCase()
-                .includes(input.toLowerCase())
+              String(option?.children ?? "").toLowerCase().includes(input.toLowerCase())
             }
             onChange={(value) => {
               if (field.name === "user") {
@@ -305,27 +303,18 @@ const FormModal: React.FC<FormModalProps> = ({
                 } else {
                   setShareData([]);
                 }
-                if (value && !isEdit && isShareForm && scriptPrices) {
-                  const price = scriptPrices[value];
 
-                  if (price !== undefined) {
-                    form.setFieldsValue({
-                      price: price.toString(),
-                    });
-                  }
-                }else{
-                  form.setFieldsValue({price: scriptPrices[value].toString()})
+                if (!isEdit && isShareForm && scriptPrices && scriptPrices[value] !== undefined) {
+                  form.setFieldsValue({
+                    price: scriptPrices[value].toString(),
+                  });
                 }
               } else if (field.name === "type" && value === "sell") {
-                // Show available shares message when selecting sell type
-                const availableShares =
-                  form.getFieldValue("availableShares") || 0;
+                const availableShares = form.getFieldValue("availableShares") || 0;
                 if (availableShares <= 0) {
                   toast.warning("No shares available for selling");
                 } else {
-                  toast.info(
-                    `Available shares for selling: ${availableShares}`
-                  );
+                  toast.info(`Available shares for selling: ${availableShares}`);
                 }
               }
             }}
@@ -336,6 +325,7 @@ const FormModal: React.FC<FormModalProps> = ({
               </Select.Option>
             ))}
           </Select>
+
         );
       default:
         return null;
@@ -382,7 +372,7 @@ const FormModal: React.FC<FormModalProps> = ({
             form
               .validateFields()
               .then((values) => onSubmit(values))
-              .catch(() => {});
+              .catch(() => { });
           }}
         >
           {isEdit ? "Update" : "Submit"}
@@ -396,7 +386,7 @@ const FormModal: React.FC<FormModalProps> = ({
         wrapperCol={{ span: 24 }}
       >
         <Row gutter={16}>
-          {formFields.map((field, index) => (
+          {formFields.map((field) => (
             <Col span={12} key={field.name}>
               <Form.Item
                 label={
@@ -412,34 +402,34 @@ const FormModal: React.FC<FormModalProps> = ({
                     ? isEdit
                       ? [] // Not required in edit
                       : [
-                          {
-                            required: true,
-                            message: "Please input the password!",
-                          },
-                        ]
+                        {
+                          required: true,
+                          message: "Please input the password!",
+                        },
+                      ]
                     : field.rules),
                   // Add custom validation for sell quantity
                   ...(field.name === "qty"
                     ? [
-                        {
-                          validator: async (
-                            _: unknown,
-                            value: string | number
-                          ) => {
-                            const type = form.getFieldValue("type");
-                            if (type === "sell") {
-                              const availableShares =
-                                form.getFieldValue("availableShares") || 0;
-                              const sellQty = parseInt(value.toString()) || 0;
-                              if (sellQty > availableShares) {
-                                throw new Error(
-                                  `Cannot sell more than ${availableShares} shares`
-                                );
-                              }
+                      {
+                        validator: async (
+                          _: unknown,
+                          value: string | number
+                        ) => {
+                          const type = form.getFieldValue("type");
+                          if (type === "sell") {
+                            const availableShares =
+                              form.getFieldValue("availableShares") || 0;
+                            const sellQty = parseInt(value.toString()) || 0;
+                            if (sellQty > availableShares) {
+                              throw new Error(
+                                `Cannot sell more than ${availableShares} shares`
+                              );
                             }
-                          },
+                          }
                         },
-                      ]
+                      },
+                    ]
                     : []),
                 ]}
               >

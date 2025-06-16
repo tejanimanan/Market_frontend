@@ -5,6 +5,7 @@ import { SHARE_TABLE_COLUMNS } from "../utils/helpers/TableColumns";
 import { SHARE_FORM_FIELDS } from "../utils/helpers/FormField";
 import { message } from "antd";
 import Swal from "sweetalert2";
+import type { Dayjs } from 'dayjs';
 import {
   getAllShares,
   createShare as createShareService,
@@ -26,7 +27,7 @@ import {
 import type { ShareData } from "../redux/slices/shareSlice";
 import { getAllScripts } from "./../services/scriptService";
 import { toast, ToastContainer } from "react-toastify";
-import { Select, Input, Space, Row, Col } from "antd";
+import { Select, Row, Col } from "antd";
 import { DatePicker } from "antd";
 import dayjs from "dayjs";
 
@@ -46,7 +47,7 @@ const SharePage: React.FC = () => {
   const {
     shares = [],
     loading,
-    error,
+    // error,
   } = useAppSelector((state) => state.share);
   // const [form] = Form.useForm();
   const [modalOpen, setModalOpen] = useState(false);
@@ -67,9 +68,7 @@ const SharePage: React.FC = () => {
     undefined
   );
   const [scriptPrices, setScriptPrices] = useState<Record<string, number>>({});
-  const [dateRange, setDateRange] = useState<
-    [dayjs.Dayjs | null, dayjs.Dayjs | null]
-  >([null, null]);
+ const [dateRange, setDateRange] = useState<[Dayjs | null, Dayjs | null] | null>(null);
   const fetchDropdownData = async () => {
     try {
       const [usersResponse, scriptsResponse] = await Promise.all([
@@ -497,21 +496,22 @@ const SharePage: React.FC = () => {
         avgPriceForUpdatedRecord = currentAvgCostBeforeUpdate;
       }
 
-      const shareData = {
-        id: Number(key),
-        user_id: parseInt(values.user),
-        script_id: parseInt(values.script),
-        qty: newQty,
-        type: values.type as "buy" | "sell",
-        price: newPrice,
-        position: values.position || "open",
-        avgPrice: avgPriceForUpdatedRecord, // Use the calculated average price for the record
-        profit_loss: profitLossForUpdatedRecord, // Use the calculated profit/loss
-      };
+      // const shareData = {
+      //   id: Number(key),
+      //   user_id: parseInt(values.user),
+      //   script_id: parseInt(values.script),
+      //   qty: newQty,
+      //   type: values.type as "buy" | "sell",
+      //   price: newPrice,
+      //   position: values.position || "open",
+      //   avgPrice: avgPriceForUpdatedRecord, // Use the calculated average price for the record
+      //   profit_loss: profitLossForUpdatedRecord, // Use the calculated profit/loss
+      // };
 
       // Construct the data object with 'key' for the service call
       const serviceUpdateData = {
         id: Number(key), // Use the record key as the key for the service
+        key:key,
         user_id: parseInt(values.user),
         script_id: parseInt(values.script),
         qty: newQty,
@@ -609,8 +609,8 @@ const SharePage: React.FC = () => {
     });
   };
   const handleDateRangeChange = (
-    dates: [dayjs.Dayjs | null, dayjs.Dayjs | null],
-    dateStrings: [string, string]
+   dates: [Dayjs | null, Dayjs | null] | null,
+  _dateStrings: [string, string]
   ) => {
     console.log("dates", dates);
     setDateRange(dates);

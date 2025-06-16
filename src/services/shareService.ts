@@ -1,7 +1,7 @@
 import { SHARE_URL } from '../Constants/API_URL';
 import Axiosclient from '../utils/api/Axiosclient';
 import type { ShareData } from '../redux/slices/shareSlice';
-import axios from 'axios';
+// import axios from 'axios';
 // import { API_URL } from '../Constants/API_URL';
 
 interface GetAllSharesParams {

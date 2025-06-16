@@ -39,13 +39,13 @@ export const SHARE_TABLE_COLUMNS: TableColumn[] = [
     title: 'User', 
     dataIndex: ['user', 'name'], 
     key: 'user_name',
-    render: (text: string, record: any) => record.user?.name || 'N/A'
+    // render: (text: string, record: any) => record.user?.name || 'N/A'
   },
   { 
     title: 'Script', 
     dataIndex: ['script', 'name'], 
     key: 'script_name',
-    render: (text: string, record: any) => record.script?.name || 'N/A'
+    // render: (text: string, record: any) => record.script?.name || 'N/A'
   },
   { title: 'Quantity', dataIndex: 'qty', key: 'qty' },
   { title: 'Type', dataIndex: 'type', key: 'type' },
