@@ -87,7 +87,7 @@ const handleScriptFilterChange = (value: string | null) => {
     if (value) setSelectedStock(value);
   };
   return (
-    <div className=" shadow rounded-xl p-5 h-[400px]" style={{background:"#E6F4EA"}}>
+    <div className=" shadow rounded-xl p-5 h-[400px] bg-transparent border border-white border-opacity-20 " >
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-lg font-semibold">
           {selectedStock} – Market Activity Overview
@@ -109,11 +109,12 @@ const handleScriptFilterChange = (value: string | null) => {
         </div>
       </div>
 
-      <ResponsiveContainer width="100%" height={300}>
-        <ComposedChart data={data}>
-          <CartesianGrid strokeDasharray="3 3" />
+      <ResponsiveContainer width="100%" height={300} >
+        <ComposedChart data={data} >
+          <CartesianGrid strokeDasharray="3 3" stroke="rgb(255, 255, 255)"  />
           <XAxis
             dataKey="date"
+            tick={{ fill: "#FFFFFF" }}
             tickFormatter={(date: string) =>
               new Date(date).toLocaleDateString("en-US", {
                 month: "short",
@@ -124,6 +125,7 @@ const handleScriptFilterChange = (value: string | null) => {
           <YAxis
             yAxisId="right"
             orientation="left"
+            tick={{ fill: "#FFFFFF" }}
             domain={["dataMin - 5", "dataMax + 5"]}
             ticks={calculateTicks()}
             tickFormatter={(value) => value.toFixed(2)}
@@ -144,6 +146,7 @@ const handleScriptFilterChange = (value: string | null) => {
           <Legend />
            <Bar
       yAxisId="right"
+      
       dataKey="close"
       fill="#00695C"
       barSize={20}

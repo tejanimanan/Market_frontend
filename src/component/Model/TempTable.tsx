@@ -136,8 +136,8 @@ const TempTable = <T extends object>({
   const finalColumns = useMemo(() => [indexColumn, ...mappedColumns, actionColumn], [mappedColumns]);
 
   return (
-    <div>
-      <Row justify="space-between" align="middle" style={{ marginBottom: 16 }}>
+    <div  className="p-4">
+      <Row justify="space-between" align="middle" style={{ marginBottom: 16 }} >
         <Col>
           <Title level={3} style={{ margin: 0 }}>
             {title}
@@ -164,6 +164,7 @@ const TempTable = <T extends object>({
       </Space>
 
       <Table
+       className="custom-ant-table"
         columns={finalColumns}
         dataSource={data}
         loading={loading}
@@ -200,6 +201,7 @@ const TempTable = <T extends object>({
 
         bordered
         rowKey="key"
+        
       />
     </div>
   );

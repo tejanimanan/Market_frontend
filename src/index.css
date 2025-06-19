@@ -67,3 +67,17 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 } */
+/* 
+.custom-ant-table .ant-table,
+.custom-ant-table .ant-table-container,
+.custom-ant-table .ant-table-content,
+.custom-ant-table .ant-table-thead > tr > th,
+.custom-ant-table .ant-table-tbody > tr > td {
+  background-color: transparent !important;
+  color: black; 
+  border-color: rgba(255, 255, 255, 0.2); 
+}
+
+.custom-ant-table .ant-table-tbody > tr:last-child > td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+} */

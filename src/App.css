@@ -40,3 +40,12 @@
 .read-the-docs {
   color: #888;
 } */
+.custom-ant-table .ant-table,
+.custom-ant-table .ant-table-container,
+.custom-ant-table .ant-table-content,
+.custom-ant-table .ant-table-thead > tr > th,
+.custom-ant-table .ant-table-tbody > tr > td {
+  background-color: transparent !important;
+  color: white; /* Optional: ensure text is visible */
+  border-color: rgba(255, 255, 255, 0.2); /* Optional: softer border */
+}

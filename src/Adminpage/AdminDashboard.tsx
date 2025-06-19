@@ -30,8 +30,8 @@ const AdminDashboard: React.FC = () => {
   }, []);
 
   return (
-    <div className="p-6 space-y-6 rounded-xl" style={{background:"#2E8B57"}}>
-      <h1 className="text-2xl font-bold">Dashboard</h1>
+    <div className="p-6 space-y-6 rounded-xl" style={{background:"url('/marketLogin.jpg')",backgroundSize:"contain"}}>
+      <h1 className="text-2xl font-bold text-white">Dashboard</h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <CounterCard title="Users" count={loading ? 0 : counts.users} icon={<User />} />

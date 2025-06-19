@@ -55,9 +55,9 @@ const AdminLogin: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-indigo-200">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-indigo-200" style={{background:"url('/marketLogin.jpg')",backgroundSize:"contain"}}>
       <ToastContainer position="top-right" autoClose={3000} />
-      <div className="bg-white shadow-2xl rounded-2xl p-8 w-full max-w-md">
+      <div className="bg-transparent border border-1 border-white shadow-2xl rounded-2xl p-8 w-full max-w-md">
         <div className="flex flex-col items-center mb-6">
           <div className="">
             <img
@@ -67,14 +67,14 @@ const AdminLogin: React.FC = () => {
             />
             {/* <LockOutlined className="text-3xl text-indigo-500" /> */}
           </div>
-          <h2 className="text-2xl font-bold text-indigo-700">Admin Login</h2>
+          <h2 className="text-2xl font-bold text-indigo-200">Admin Login</h2>
           <p className="text-gray-500 text-sm mt-1">
             Sign in to your admin dashboard
           </p>
         </div>
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label className="block text-gray-700 font-medium mb-1">
+            <label className="block text-white font-semibold mb-1">
               Email
             </label>
             <div className="relative">
@@ -83,7 +83,7 @@ const AdminLogin: React.FC = () => {
               </span>
               <input
                 type="email"
-                className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
+                className="w-full text-white pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
                 placeholder="admin@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -93,7 +93,7 @@ const AdminLogin: React.FC = () => {
             </div>
           </div>
           <div>
-            <label className="block text-gray-700 font-medium mb-1">
+            <label className="block text-white font-semibold mb-1">
               Password
             </label>
             <div className="relative">
@@ -102,8 +102,8 @@ const AdminLogin: React.FC = () => {
               </span>
               <input
                 type={showPassword ? "text" : "password"}
-                className="w-full pl-10 pr-10 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
-                placeholder="Enter your password"
+                className="w-full text-white pl-10 pr-10 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
+                placeholder="admin123"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 autoComplete="current-password"
@@ -122,7 +122,7 @@ const AdminLogin: React.FC = () => {
           )}
           <button
             type="submit"
-            className={`w-full bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 rounded-lg shadow transition ${
+            className={`w-full bg-green-700 hover:bg-green-800 text-white font-semibold py-2 rounded-lg shadow transition ${
               loading ? "opacity-50 cursor-not-allowed" : ""
             }`}
             disabled={loading}

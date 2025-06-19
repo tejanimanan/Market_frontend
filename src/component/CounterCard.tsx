@@ -39,11 +39,11 @@ const CounterCard: React.FC<CounterCardProps> = ({ title, count, icon }) => {
   }, [count]);
 
   return (
-    <div style={{background:"darkseagreen"}} className=" shadow-lg rounded-xl p-5 flex items-center gap-4">
+    <div  className=" shadow-lg bg-transparent rounded-xl p-5 flex items-center gap-4 border border-white border-opacity-10">
       <div className="text-6xl text-blue-600">{icon}</div>
-      <div>
-        <h4 className="text-dark text-xl font-semibold">{title}</h4>
-        <p className="text-2xl font-bold">{displayCount}</p>
+      <div >
+        <h4 className="text-white text-xl font-semibold">{title}</h4>
+        <p className="text-2xl text-white font-bold">{displayCount}</p>
       </div>
     </div>
   );
