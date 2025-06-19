@@ -3,7 +3,7 @@ import { Layout, Menu } from "antd";
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  
+
 } from "@ant-design/icons";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
@@ -36,15 +36,15 @@ const AdminSideBar: React.FC = () => {
   const handleLogout = () => {
     // Clear Redux state
     // dispatch(logout());
-    
+
     // Clear localStorage
     removeLocalStorage(LOCAL_STORAGE.TOKEN);
     removeLocalStorage(LOCAL_STORAGE.USER_ID);
     removeLocalStorage("user_email");
-    
+
     // Show success message
     toast.success("Logged out successfully");
-    
+
     // Redirect to login page
     navigate("/");
   };
@@ -56,7 +56,7 @@ const AdminSideBar: React.FC = () => {
       trigger={null}
       width={300}
       style={{
-        background: "#fff",
+
         color: "black",
         paddingTop: 20,
         borderRight: "1px solid #f0f0f0",
@@ -64,9 +64,17 @@ const AdminSideBar: React.FC = () => {
     >
       <div className="flex items-center justify-between p-4">
         {!collapsed && (
-          <h1 className="text-lg font-bold text-black flex items-center gap-2">
-            MarketData
-          </h1>
+          <>
+
+            <img
+              src="/redbulllogo.png"
+              alt="Logo"
+              className="w-18 h-18"
+            />
+            <h1 className="text-2xl font-bold text-white flex items-center gap-2">
+              TradeBoard
+            </h1>
+          </>
         )}
         <button
           onClick={toggleCollapsed}
@@ -77,8 +85,9 @@ const AdminSideBar: React.FC = () => {
       </div>
 
       <Menu
-        theme="light"
+        theme="dark"
         mode="inline"
+        style={{ fontSize: "18px" }}
         selectedKeys={[location.pathname]}
         items={[
           {

@@ -14,7 +14,7 @@ const AdminLayout: React.FC = () => {
   return (
     <Layout style={{ minHeight: "100vh" }}>
      
-      <AppHeader />
+      {/* <AppHeader /> */}
       <Layout>
         <AdminSideBar />
 

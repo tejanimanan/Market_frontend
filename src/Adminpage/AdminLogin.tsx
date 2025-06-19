@@ -61,7 +61,7 @@ const AdminLogin: React.FC = () => {
         <div className="flex flex-col items-center mb-6">
           <div className="">
             <img
-              src="/market_data_logo.png"
+              src="/redbulllogo.png"
               alt="Logo"
               className="w-50 h-50"
             />
